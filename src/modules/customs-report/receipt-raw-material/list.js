@@ -160,4 +160,23 @@ export class List {
             this.service.generateExcel(info);
         }
     }
+
+    formatRecordDate(recordDate) {
+        if (!recordDate || recordDate === '-' || recordDate === '0001-01-01' || recordDate.includes('0001')) {
+            return '-';
+        }
+
+        const date = new Date(recordDate);
+
+        // Pastikan valid date
+        if (isNaN(date.getTime())) return '-';
+
+        // Format: "29 Okt 2025"
+        return date.toLocaleDateString('id-ID', {
+            day: '2-digit',
+            month: 'short',
+            year: 'numeric'
+        });
+    }
+
 }

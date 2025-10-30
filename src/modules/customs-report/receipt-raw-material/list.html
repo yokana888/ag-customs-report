@@ -57,12 +57,11 @@
 
                 <tr repeat.for="item of data">
                     <td class="text-center">${$index + 1}</td>
-                    <td class="text-center">-</td>
+                    <td class="text-center">${formatRecordDate(item.RecordDate)}</td>
                     <td class="text-center" if.bind="item.rowspan" rowspan="${item.rowspan}">${item.CustomsType}</td>
                     <td class="text-center" if.bind="item.rowspan" rowspan="${item.rowspan}">${item.BeacukaiNo}</td>
-                    <td class="text-center" if.bind="item.rowspan" rowspan="${item.rowspan}">${item.BeacukaiDate |
-                        dateFormat:'D MMM YYYY'}</td>
-                    <td class="text-center">-</td>
+                    <td class="text-center" if.bind="item.rowspan" rowspan="${item.rowspan}">${item.BeacukaiDate | dateFormat:'D MMM YYYY'}</td>
+                    <td class="text-center">${item.HsCode}</td>
                     <td class="text-center">${item.SerialNo}</td>
                     <td class="text-center">${item.URNNo}</td>
                     <td class="text-center">${item.URNDate | dateFormat:'D MMM YYYY'}</td>
