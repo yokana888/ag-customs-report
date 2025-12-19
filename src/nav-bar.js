@@ -9,17 +9,24 @@ export class NavBar {
 
     @computedFrom('authService.authenticated')
     get isAuthenticated() {
-        if (this.authService.authenticated) {
+        return this.authService.authenticated;
+    }
+
+    attached() {
+         if (this.authService.authenticated) {
             this.authService.getMe()
                 .then((result) => {
                     this.me = result.data;
                 })
-        }
-        else {
+                .catch((err) => {
+                    if (err.status == 401) {
+                        alert("Sesi anda telah habis, silahkan login kembali.");
+                        this.logout();
+                    }
+                });
+        } else {
             this.me = null;
         }
-
-        return this.authService.authenticated;
     }
 
     logout() {
